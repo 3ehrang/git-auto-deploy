@@ -1,6 +1,4 @@
 <?php
-// Forked from https://gist.github.com/1809044
-// Available from https://gist.github.com/nichtich/5290675#file-deploy-php
 
 require 'configuration.php';
 
@@ -95,15 +93,17 @@ array_push(
 );
 
 $log = "####### ". $date . " #######\n";
-$output = $title . ' version ' . $version;
+echo "\e[0;32;40m" . "##  " . $title . " version " . $version . " ##" . "\e[0m\n" . "\n";
+$output = '';
 foreach($commands AS $command){
     // Run it
     $tmp    = shell_exec("$command 2>&1");
     // Output
-    $output .= $command . '\n';
-    $output .= trim($tmp) . "\n";
+    $output .= "\e[0;36;40m" . $command . "\e[0m\n";
+    $output .= trim($tmp) . "\r\n\r\n";
     $log    .= "\$ $command\n".trim($tmp)."\n";
 }
 $log .= "\n";
 file_put_contents ($config->log_path, $log,FILE_APPEND);
-echo $output; 
+//echo "\e[0;31;40m" . $output . "\e[0m\n";
+echo $output;
