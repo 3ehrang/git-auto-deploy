@@ -20,4 +20,6 @@ class Configuration {
 	public $token = '';
 	
 	public $allowed_ips = [];
+	
+	public $mailTo = '';
 }

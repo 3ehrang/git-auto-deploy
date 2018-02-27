@@ -107,3 +107,8 @@ $log .= "\n";
 file_put_contents ($config->log_path, $log,FILE_APPEND);
 //echo "\e[0;31;40m" . $output . "\e[0m\n";
 echo $output;
+
+// send new demployment email
+if (!empty($config->mailTo)) {
+	mail($config->mailTo, "New Deployment", $output);
+}
